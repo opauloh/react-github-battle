@@ -9,9 +9,7 @@ import './index.css';
 
 class App extends React.Component {
   render() {
-    return (
-      <div>Hello World!</div>
-    )
+    return <div>Hello World!</div>;
   }
 }
 
@@ -20,4 +18,4 @@ ReactDOM.render(
   // Where to render to the element to
   <App />,
   document.getElementById('app')
-)
+);
