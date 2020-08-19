@@ -3,6 +3,8 @@ import { battle } from '../utils/api';
 import { FaCompass, FaBriefcase, FaUsers, FaUserFriends, FaUser } from 'react-icons/fa';
 import Card from './Card';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
+import Tooltip from './Tooltip';
 
 function ProfileList({ profile }) {
   return (
@@ -12,12 +14,16 @@ function ProfileList({ profile }) {
         {profile.name}
       </li>
       <li>
-        <FaCompass color="rgb(144, 115, 255)" size={22} />
-        {profile.location}
+        <Tooltip text="User's location">
+          <FaCompass color="rgb(144, 115, 255)" size={22} />
+          {profile.location}
+        </Tooltip>
       </li>
       <li>
-        <FaBriefcase color="#795548" size={22} />
-        {profile.company}
+        <Tooltip text="User's company">
+          <FaBriefcase color="#795548" size={22} />
+          {profile.company}
+        </Tooltip>
       </li>
       <li>
         <FaUsers color="rgb(129, 195, 245)" size={22} />
@@ -70,7 +76,7 @@ export default class Results extends React.Component {
   render() {
     const { winner, loser, error, loading } = this.state;
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading text="Battling" />;
 
     if (error) return <p className="center-text error">{error}</p>;
 
