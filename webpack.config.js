@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // "production" | "development" | "none"
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development', // "production" | "development" | "none"
   // Chosen mode tells webpack to use its built-in optimizations accordingly.
   entry: './app/index.js', // string | object | array
   // defaults to ./src
@@ -150,6 +151,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/index.html'
-    })
+    }),
+    new CopyPlugin({ patterns: [{ from: '_redirects' }] })
   ]
 };
